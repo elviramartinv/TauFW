@@ -31,16 +31,16 @@ class ModuleMuTau(ModuleTauPair):
       self.trigger    = lambda e: e.HLT_IsoMu24 or e.HLT_IsoMu27#e.HLT_IsoMu27 #or e.HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1
       self.muonCutPt  = lambda e: 25
       self.muonCutEta = lambda e: 2.4
-    elif self.year==2022 or self.year==2023:
+    elif self.year==2022 or self.year==2023 or self.year==2024:
       self.trigger    = lambda e: e.HLT_IsoMu24 or e.HLT_IsoMu27#e.HLT_IsoMu27 #or e.HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1
-      self.muonCutPt  = lambda e: 25
+      self.muonCutPt  = lambda e: 26
       self.muonCutEta = lambda e: 2.4
     self.tauCutPt     = 20
     self.tauCutEta    = 2.5 # 2.3 DeepTau2p1 and 2.5 for DeepTau2p5
     
     # CORRECTIONS
-    if self.ismc:
-      self.muSFs   = MuonSFs(era=self.era,verb=self.verbosity) # muon id/iso/trigger SFs
+    # if self.ismc:
+      # self.muSFs   = MuonSFs(era=self.era,verb=self.verbosity) # muon id/iso/trigger SFs
     
     # CUTFLOW
     self.out.cutflow.addcut('none',         "no cut"                     )
@@ -170,8 +170,8 @@ class ModuleMuTau(ModuleTauPair):
     if self.out.lepton_vetoes[0] and self.out.lepton_vetoes_notau[0]: return False
     self.out.cutflow.fill('lepvetoes')
 
-    if self.jetveto(event): return False
-    self.out.cutflow.fill('jetvetoes')
+    # if self.jetveto(event): return False
+    # self.out.cutflow.fill('jetvetoes')
    
  
     # EVENT
@@ -249,9 +249,12 @@ class ModuleMuTau(ModuleTauPair):
       if muon.pfRelIso04_all<0.50 and tau.idDeepTau2018v2p5VSjet>=2:
          self.btagTool.fillEffMaps(jets,usejec=self.dojec)
       
+
       # MUON WEIGHTS
-      self.out.trigweight[0]          = self.muSFs.getTriggerSF(muon.pt,muon.eta) # assume leading muon was triggered on
-      self.out.idisoweight_1[0]       = self.muSFs.getIdIsoSF(muon.pt,muon.eta)
+      # self.out.trigweight[0]          = self.muSFs.getTriggerSF(muon.pt,muon.eta) # assume leading muon was triggered on
+      # self.out.idisoweight_1[0]       = self.muSFs.getIdIsoSF(muon.pt,muon.eta)
+      self.out.trigweight[0]          = 1.
+      self.out.idisoweight_1[0]       = 1.
       
       #print("eta: ", muon.eta)
       #print("pt: ",  muon.pt)
