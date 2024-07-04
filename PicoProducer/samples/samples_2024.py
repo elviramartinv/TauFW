@@ -89,8 +89,8 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts),
 
   # SINGLE MUON
-  D('Data','Muon0_Run2024A',"/Muon0/Run2024A-PromptReco-v1/NANOAOD",
-    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
+  # D('Data','Muon0_Run2024A',"/Muon0/Run2024A-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   D('Data','Muon0_Run2024B',"/Muon0/Run2024B-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   D('Data','Muon0_Run2024C',"/Muon0/Run2024C-PromptReco-v1/NANOAOD",
@@ -111,15 +111,17 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   D('Data','Muon1_Run2024D',"/Muon1/Run2024D-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
-  D('Data','Muon1_Run2024E',"/Muon1/Run2024E-PromptReco-v1/NANOAOD",
+  D('Data','Muon1_Run2024E_v1',"/Muon1/Run2024E-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
-  D('Data','Muon1_Run2024F',"/Muon1/Run2024F-PromptReco-v1/NANOAOD",
+  D('Data','Muon1_Run2024E_v2',"/Muon1/Run2024E-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
+  # D('Data','Muon1_Run2024F',"/Muon1/Run2024F-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
 
 
   # SINGLE ELECTRON
-  D('Data','EGamma0_Run2024A',"/EGamma0/Run2024A-PromptReco-v1/NANOAOD",
-    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
+  # D('Data','EGamma0_Run2024A',"/EGamma0/Run2024A-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma0_Run2024B',"/EGamma0/Run2024B-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma0_Run2024C',"/EGamma0/Run2024C-PromptReco-v1/NANOAOD",
@@ -144,13 +146,13 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma1_Run2024E_v2',"/EGamma1/Run2024F-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
-  D('Data','EGamma1_Run2024F',"/EGamma1/Run2024F-PromptReco-v1/NANOAOD",
-    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
+  # D('Data','EGamma1_Run2024F',"/EGamma1/Run2024F-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
 
 
   # TAU
-  D('Data','Tau_Run2024A',"/Tau/Run2024A-PromptReco-v1/NANOAOD",
-    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
+  # D('Data','Tau_Run2024A',"/Tau/Run2024A-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
   D('Data','Tau_Run2024B',"/Tau/Run2024B-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
   D('Data','Tau_Run2024C',"/Tau/Run2024C-PromptReco-v1/NANOAOD",
@@ -161,8 +163,8 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
   D('Data','Tau_Run2024E_v2',"/Tau/Run2024E-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
-  D('Data','Tau_Run2024F',"/Tau/Run2024F-PromptReco-v1/NANOAOD",
-    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
+  # D('Data','Tau_Run2024F',"/Tau/Run2024F-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
    
 ]
 
