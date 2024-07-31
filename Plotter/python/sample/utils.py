@@ -104,7 +104,7 @@ def getsampleset(datasample,expsamples,sigsamples=[ ],**kwargs):
         datasample.add(Data(setname,title_,fname,**datakwargs))
     else:
       LOG.throw(IOError,"Did not find data file %r"%(fpattern))
-  
+
   # SAMPLE SET
   sampleset = SampleSet(datasample,expsamples,sigsamples,**kwargs)
   return sampleset
@@ -394,8 +394,7 @@ def stitch(samplelist,*searchterms,**kwargs):
   xsec_incl = kwargs.get('xsec',      None           ) # (N)NLO cross section to compute k-factor
   kfactor   = kwargs.get('kfactor',   None          ) # k-factor
   cme = kwargs.get('cme',13) # COM energy
-
-
+  
   print("kfactor step 1  = ",kfactor)
   verbosity = 2
   ###### NanoAOD efficiencies -- currently hard-coded
@@ -503,7 +502,7 @@ def stitch(samplelist,*searchterms,**kwargs):
     else:
       print(sample.name)
       
-      if "2022" in era or "2023" in era or '2024' in era: 
+      if "2022" in era or "2023" in era or "2024" in era: 
         match = re.search(r'_(\d{1,2}J)', sample.name)
         if match:
           njets = int(match.group(1)[:-1])
