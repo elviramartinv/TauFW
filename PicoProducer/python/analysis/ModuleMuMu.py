@@ -41,8 +41,8 @@ class ModuleMuMu(ModuleTauPair):
     self.tauCutEta    = 2.3
     
     # CORRECTIONS
-    if self.ismc:
-      self.muSFs   = MuonSFs(era=self.era)
+    # if self.ismc:
+    #   self.muSFs   = MuonSFs(era=self.era)
 
     # TRIGGERS
     jsonfile = os.path.join(datadir,"trigger/tau_triggers_%d.json"%(2018))
@@ -252,10 +252,13 @@ class ModuleMuMu(ModuleTauPair):
         self.btagTool.fillEffMaps(jets,usejec=self.dojec)
       
       # MUON WEIGHTS
-      self.out.trigweight[0]    = self.muSFs.getTriggerSF(muon1.pt,muon1.eta) # assume leading muon was triggered on
-      self.out.idisoweight_1[0] = self.muSFs.getIdIsoSF(muon1.pt,muon1.eta)
-      self.out.idisoweight_2[0] = self.muSFs.getIdIsoSF(muon2.pt,muon2.eta)
+      # self.out.trigweight[0]    = self.muSFs.getTriggerSF(muon1.pt,muon1.eta) # assume leading muon was triggered on
+      # self.out.idisoweight_1[0] = self.muSFs.getIdIsoSF(muon1.pt,muon1.eta)
+      # self.out.idisoweight_2[0] = self.muSFs.getIdIsoSF(muon2.pt,muon2.eta)
     
+      self.out.trigweight[0]    = 1.
+      self.out.idisoweight_1[0] = 1.
+      self.out.idisoweight_2[0] = 1.
     
     # MET & DILEPTON VARIABLES
     self.fillMETAndDiLeptonBranches(event,muon1,muon2,met,met_vars)
