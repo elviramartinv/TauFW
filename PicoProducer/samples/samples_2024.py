@@ -9,11 +9,14 @@ opts_tt  = opts+",toppt=True"
 samples  = [
   
   # DRELL-YAN 
-  M('DY','DYto2L-4Jets_MLL-50_ext1',                                                                                        
-    "/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENano_133X_mcRun3_2024_realistic_v10_ext1-v2/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts_dy),
-  M('DY','DYto2L-4Jets_MLL-50_ext2',                                                                                        
-    "/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10_ext2-v1/NANOAODSIM",
+  # M('DY','DYto2L-4Jets_MLL-50_ext1',                                                                                        
+  #   "/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENano_133X_mcRun3_2024_realistic_v10_ext1-v2/NANOAODSIM",
+  #   store=storage,url=url,files=filelist,opts=opts_dy),
+  # M('DY','DYto2L-4Jets_MLL-50_ext2',                                                                                        
+  #   "/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10_ext2-v1/NANOAODSIM",
+  #   store=storage,url=url,files=filelist,opts=opts_dy),
+  M('DY','DYto2L-4Jets_MLL-50',
+    "/DYto2L-4Jets_MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENano_133X_mcRun3_2024_realistic_v10-v3/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts_dy),
   M('DY','DYto2L-4Jets_MLL-50_1J',
     "/DYto2L-4Jets_MLL-50_1J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
@@ -31,30 +34,30 @@ samples  = [
 
   # TTBAR
   M('TT','TTto2L2Nu',
-    "/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts_tt),
   M('TT','TTtoLNu2Q',
     "/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts_tt),
+    store=storage,url=url,files=filelist,opts=opts_tt),  ###### 2023
   M('TT','TTto4Q',
     "/TTto4Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts_tt),
+    store=storage,url=url,files=filelist,opts=opts_tt),  ###### 2023
   
   # W+JETS
   M('WJ','WtoLNu-4Jets',
-    "/WtoLNu-4Jets_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/WtoLNu-4Jets_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('WJ','WtoLNu-4Jets_1J',
-    "/WtoLNu-4Jets_1J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/WtoLNu-4Jets_1J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('WJ','WtoLNu-4Jets_2J',
-    "/WtoLNu-4Jets_2J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/WtoLNu-4Jets_2J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('WJ','WtoLNu-4Jets_3J',
-    "/WtoLNu-4Jets_3J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/WtoLNu-4Jets_3J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('WJ','WtoLNu-4Jets_4J',
-    "/WtoLNu-4Jets_4J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/WtoLNu-4Jets_4J_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   
   # SINGLE TOP
@@ -66,26 +69,26 @@ samples  = [
   #  store=storage,url=url,files=filelist,opts=opts),
   M('ST','TWminustoLNu2Q',
     "/TWminustoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts),
+    store=storage,url=url,files=filelist,opts=opts), ##### 2023
   M('ST','TWminusto2L2Nu',
-    "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+    "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('ST','TbarWplustoLNu2Q',
-    "/TbarWplustoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v5-v2/NANOAODSIM",
+    "/TbarWplustoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('ST','TbarWplusto2L2Nu',
     "/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v5-v2/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts), 
+    store=storage,url=url,files=filelist,opts=opts), ##### 2023
   
   # DIBOSON
   M('VV','WW',
     "/WW_TuneCP5_13p6TeV_pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v2/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts),
+    store=storage,url=url,files=filelist,opts=opts), ###### 2023
   M('VV','WZ',
-    "/WZ_TuneCP5_13p6TeV_pythia8/Run3Winter24NanoAOD-133X_mcRun3_2024_realistic_v7-v2/NANOAODSIM",
+    "/WZ_TuneCP5_13p6TeV_pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('VV','ZZ',
-    "/ZZ_TuneCP5_13p6TeV_pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v2/NANOAODSIM",
+    "/ZZ_TuneCP5_13p6TeV_pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
 
   # SINGLE MUON
@@ -99,8 +102,10 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   D('Data','Muon0_Run2024E',"/Muon0/Run2024E-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
-  # D('Data','Muon0_Run2024F',"/Muon0/Run2024F-PromptReco-v1/NANOAOD",
-  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
+  D('Data','Muon0_Run2024F',"/Muon0/Run2024F-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
+  D('Data','Muon0_Run2024G',"/Muon0/Run2024G-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   # D('Data','Muon1_Run2024A',"/Muon1/Run2024A-PromptReco-v1/NANOAOD",
   #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   D('Data','Muon1_Run2024B',"/Muon1/Run2024B-PromptReco-v1/NANOAOD",
@@ -111,8 +116,10 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
   D('Data','Muon1_Run2024E',"/Muon1/Run2024E-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
-  # D('Data','Muon1_Run2024F',"/Muon1/Run2024F-PromptReco-v1/NANOAOD",
-  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
+  D('Data','Muon1_Run2024F',"/Muon1/Run2024F-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
+  D('Data','Muon1_Run2024G',"/Muon0/Run2024G-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'mutau','mumu','emu','mumutau','mumettau']),
 
 
   # SINGLE ELECTRON
@@ -124,14 +131,14 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma0_Run2024D',"/EGamma0/Run2024D-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
-  D('Data','EGamma0_Run2024E_v1',"/EGamma0/Run2024E-PromptReco-v1/NANOAOD",
-    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
-  D('Data','EGamma0_Run2024E_v2',"/EGamma0/Run2024F-PromptReco-v2/NANOAOD",
+  D('Data','EGamma0_Run2024E',"/EGamma0/Run2024F-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma0_Run2024F',"/EGamma0/Run2024F-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
-  D('Data','EGamma1_Run2024A',"/EGamma1/Run2024A-PromptReco-v1/NANOAOD",
+  D('Data','EGamma0_Run2024G',"/EGamma0/Run2024G-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
+  # D('Data','EGamma1_Run2024A',"/EGamma1/Run2024A-PromptReco-v1/NANOAOD",
+  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma1_Run2024B',"/EGamma1/Run2024B-PromptReco-v1/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma1_Run2024C',"/EGamma1/Run2024C-PromptReco-v1/NANOAOD",
@@ -140,8 +147,10 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
   D('Data','EGamma1_Run2024E',"/EGamma1/Run2024F-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
-  # D('Data','EGamma1_Run2024F',"/EGamma1/Run2024F-PromptReco-v1/NANOAOD",
-  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
+  D('Data','EGamma1_Run2024F',"/EGamma1/Run2024F-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
+  D('Data','EGamma1_Run2024G',"/EGamma1/Run2024G-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'etau','ee','eetau']),
 
 
   # TAU
@@ -155,8 +164,10 @@ samples  = [
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
   D('Data','Tau_Run2024E',"/Tau/Run2024E-PromptReco-v2/NANOAOD",
     store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
-  # D('Data','Tau_Run2024F',"/Tau/Run2024F-PromptReco-v1/NANOAOD",
-  #   store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
+  D('Data','Tau_Run2024F',"/Tau/Run2024F-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
+  D('Data','Tau_Run2024G',"/Tau/Run2024G-PromptReco-v1/NANOAOD",
+    store=storage,url=url,files=filelist,opts=opts,channels=["skim*",'tautau']),
    
 ]
 
