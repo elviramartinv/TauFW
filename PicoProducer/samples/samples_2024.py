@@ -37,11 +37,11 @@ samples  = [
     "/TTto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts_tt),
   M('TT','TTtoLNu2Q',
-    "/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts_tt),  ###### 2023
-  M('TT','TTto4Q',
-    "/TTto4Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts_tt),  ###### 2023
+    "/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
+    store=storage,url=url,files=filelist,opts=opts_tt), 
+  # M('TT','TTto4Q',
+  #   "/TTto4Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
+  #   store=storage,url=url,files=filelist,opts=opts_tt),  ###### 2023
   
   # W+JETS
   M('WJ','WtoLNu-4Jets',
@@ -68,8 +68,8 @@ samples  = [
   #  "",
   #  store=storage,url=url,files=filelist,opts=opts),
   M('ST','TWminustoLNu2Q',
-    "/TWminustoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts), ##### 2023
+    "/TWminustoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
+    store=storage,url=url,files=filelist,opts=opts), 
   M('ST','TWminusto2L2Nu',
     "/TWminusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
@@ -77,13 +77,13 @@ samples  = [
     "/TbarWplustoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
   M('ST','TbarWplusto2L2Nu',
-    "/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v5-v2/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts), ##### 2023
+    "/TbarWplusto2L2Nu_TuneCP5_13p6TeV_powheg-pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
+    store=storage,url=url,files=filelist,opts=opts), 
   
   # DIBOSON
   M('VV','WW',
-    "/WW_TuneCP5_13p6TeV_pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v2/NANOAODSIM",
-    store=storage,url=url,files=filelist,opts=opts), ###### 2023
+    "/WW_TuneCP5_13p6TeV_pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
+    store=storage,url=url,files=filelist,opts=opts), 
   M('VV','WZ',
     "/WZ_TuneCP5_13p6TeV_pythia8/Run3Winter24NanoAOD-JMENanoV14_133X_mcRun3_2024_realistic_v10-v2/NANOAODSIM",
     store=storage,url=url,files=filelist,opts=opts),
