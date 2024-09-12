@@ -47,6 +47,7 @@ def getMCProfile(outfname,samples,channel,era,tag=""):
   nprofiles = 0
   histname  = 'pileup'
   tothist   = None
+  print("SAMPLES", samples)
   for sample, infname in samples:
     print(">>>   %s"%(infname))
     file, hist = gethist(infname,histname,retfile=True)
@@ -380,8 +381,8 @@ def main(args):
   verbosity = args.verbosity
   minbiases = [ 69.2 ] if periods else [ 69.2*0.954, 69.2, 69.2*1.046, 80.0 ]
   
-  #fname_ = "$PICODIR/$SAMPLE_$CHANNEL.root" # sample file name
-  fname_ = "/scratch/ineuteli/analysis/LQ_$ERA/$GROUP/$SAMPLE_$CHANNEL.root" # sample file name
+  fname_ = "$PICODIR/$SAMPLE_$CHANNEL.root" # sample file name
+  # fname_ = "/scratch/ineuteli/analysis/LQ_$ERA/$GROUP/$SAMPLE_$CHANNEL.root" # sample file name
   if 'mc' in types and '$PICODIR' in fname_:
     import TauFW.PicoProducer.tools.config as GLOB
     CONFIG = GLOB.getconfig(verb=verbosity)
@@ -485,6 +486,29 @@ def main(args):
             ( 'VV', "ZZ",                   ),
           ]
           samples = samples_bug + samples_fix
+      elif era=='2024':
+          samples  = [
+            ( 'DY', "DYto2L-4Jets_MLL-50"   ),
+            ( 'DY', "DYto2L-4Jets_MLL-50_1J"       ),
+            ( 'DY', "DYto2L-4Jets_MLL-50_2J"      ),
+            ( 'DY', "DYto2L-4Jets_MLL-50_3J"      ),
+            ( 'DY', "DYto2L-4Jets_MLL-50_4J"      ),
+            ( 'WJ', "WtoLNu-4Jets"            ),
+            ( 'WJ', "WtoLNu-4Jets_1J"           ),
+            ( 'WJ', "WtoLNu-4Jets_2J"           ),
+            ( 'WJ', "WtoLNu-4Jets_3J"           ),
+            ( 'WJ', "WtoLNu-4Jets_4J"           ),
+            # ( 'TT', "TTto4Q"          ),
+            ( 'TT', "TTto2L2Nu"             ),
+            ( 'TT', "TTtoLNu2Q"      ),
+            ( 'ST', "TWminusto2L2Nu"             ),
+            ( 'ST', "TWminustoLNu2Q"         ),
+            ( 'ST', "TbarWplusto2L2Nu"      ),
+            ( 'ST', "TbarWplustoLNu2Q"  ),
+            ( 'VV', "WW"                    ),
+            ( 'VV', "WZ"                    ),
+            ( 'VV', "ZZ"                    ),
+          ]
       else:
         if 'UL' in era:
           campaign = "Summer19"
