@@ -9,7 +9,7 @@
 #>>>>Run with --serial option if using py3:
 #   ./plot.py -y 2018 -c mutau --serial
 
-from config.samples import *
+from config.samples_v12 import *
 from TauFW.Plotter.plot.string import filtervars
 from TauFW.Plotter.plot.utils import LOG as PLOG
 import yaml
@@ -132,7 +132,7 @@ def main(args):
       sampleset = getsampleset(setup['channel'],era,fname=fname,rmsf=rmsfs,addsf=addsfs,split=split)
       plot(sampleset,setup,parallel=parallel,tag=tag,extratext=extratext,outdir=outdir,era=era,
            varfilter=varfilter,selfilter=selfilter,fraction=fraction,pdf=pdf)
-      sampleset.close()
+      #sampleset.close()
   
 
 if __name__ == "__main__":

@@ -45,13 +45,13 @@ def getsampleset(channel,era,**kwargs):
     if '2024' in era:
       expsamples = [ # table of MC samples to be converted to Sample objects
         # GROUP NAME                     TITLE                 XSEC      EXTRA OPTIONS
-        ( 'DY', "DYto2L-4Jets_MLL-50",       "Drell-Yan 50",        1.4*5455.0*kfactor_dy), # {'extraweight': dyweight }),#, "nevts":nevts_json["DYJetsToLL_M-50"]} ), # LO times kfactor, commenting this one out as it is the same as the one below but in principle it should be possible to conbine this sample with the inclusive one below 
+        ( 'DY', "DYto2L-4Jets_MLL-50",       "Drell-Yan 50",        5455.0*kfactor_dy, {'extraweight': dyweight }),#, "nevts":nevts_json["DYJetsToLL_M-50"]} ), # LO times kfactor, commenting this one out as it is the same as the one below but in principle it should be possible to conbine this sample with the inclusive one below 
         # ( 'DY', "DYto2L-4Jets_MLL-50_ext1",   "Drell-Yan 50",        5455.0*kfactor_dy, {'extraweight': dyweight } ), # LO times kfactor
         # ( 'DY', "DYto2L-4Jets_MLL-50_ext2",  "Drell-Yan 50",        5455.0*kfactor_dy, {'extraweight': dyweight } ), # LO times kfactor
-        ( 'DY', "DYto2L-4Jets_MLL-50_1J",      "Drell-Yan 1J 50",      1.4*978.3*kfactor_dy), # {'extraweight': dyweight} ), # LO times kfactor currently not available
-        ( 'DY', "DYto2L-4Jets_MLL-50_2J",      "Drell-Yan 2J 50",      1.4*315.1*kfactor_dy), # {'extraweight': dyweight} ), # LO times kfactor
-        ( 'DY', "DYto2L-4Jets_MLL-50_3J",      "Drell-Yan 3J 50",      1.4*93.7*kfactor_dy), # {'extraweight': dyweight} ), # LO times kfactor
-        ( 'DY', "DYto2L-4Jets_MLL-50_4J",      "Drell-Yan 4J 50",      1.4*45.4*kfactor_dy), # {'extraweight': dyweight} ), # LO times kfactor
+        ( 'DY', "DYto2L-4Jets_MLL-50_1J",      "Drell-Yan 1J 50",      978.3*kfactor_dy, {'extraweight': dyweight} ), # LO times kfactor currently not available
+        ( 'DY', "DYto2L-4Jets_MLL-50_2J",      "Drell-Yan 2J 50",      315.1*kfactor_dy, {'extraweight': dyweight} ), # LO times kfactor
+        ( 'DY', "DYto2L-4Jets_MLL-50_3J",      "Drell-Yan 3J 50",      93.7*kfactor_dy, {'extraweight': dyweight} ), # LO times kfactor
+        ( 'DY', "DYto2L-4Jets_MLL-50_4J",      "Drell-Yan 4J 50",      45.4*kfactor_dy, {'extraweight': dyweight} ), # LO times kfactor
         ( 'WJ', "WtoLNu-4Jets",            "W + jets",           55300.*kfactor_wj ), # LO times kfactor
         ( 'WJ', "WtoLNu-4Jets_1J",           "W + 1J",              9128.*kfactor_wj), # LO times kfactor
         ( 'WJ', "WtoLNu-4Jets_2J",           "W + 2J",              2922.*kfactor_wj  ), # LO times kfactor
@@ -63,14 +63,14 @@ def getsampleset(channel,era,**kwargs):
         ( 'VV', "ZZ",             "ZZ",                    12.75*kfactor_zz ), # LO times kfactor
 
         ( 'TT', "TTto2L2Nu",             "ttbar 2l2#nu",          80.9*kfactor_ttbar, {'extraweight': ttweight} ), # NLO times BR times kfactor
-        ( 'TT', "TTto4Q",                "ttbar hadronic",       346.4*kfactor_ttbar, {'extraweight': ttweight} ), # NLO times BR times kfactor
+        # ( 'TT', "TTto4Q",                "ttbar hadronic",       346.4*kfactor_ttbar, {'extraweight': ttweight} ), # NLO times BR times kfactor
         ( 'TT', "TTtoLNu2Q",             "ttbar semileptonic",   334.8*kfactor_ttbar, {'extraweight': ttweight} ), # NLO times BR times kfactor
         #( 'ST', "TBbarQ_t-channel",      "ST t-channel t",       123.8), # NLO
         #( 'ST', "TbarBQ_t-channel",      "ST t-channel at",      75.47), # NLO
         ( 'ST', "TWminustoLNu2Q",             "ST tW semileptonic",         15.8 ), # NLO (36.0) times LNu2Q BR
         ( 'ST', "TWminusto2L2Nu",             "ST tW 2l2#nu",               3.8 ), # NLO (36.0) times 2L2Nu BR
-        # ( 'ST', "TbarWplustoLNu2Q",         "ST atW semileptonic",          15.9 ), # NLO (36.1) times LNu2Q BR
-        # ( 'ST', "TbarWplusto2L2Nu",         "ST atW 2l2#nu",                3.8 ), # NLO (36.1) times 2L2Nu BR
+        ( 'ST', "TbarWplustoLNu2Q",         "ST atW semileptonic",          15.9 ), # NLO (36.1) times LNu2Q BR
+        ( 'ST', "TbarWplusto2L2Nu",         "ST atW 2l2#nu",                3.8 ), # NLO (36.1) times 2L2Nu BR
       ]  
     
     if '2023' in era:
@@ -99,8 +99,8 @@ def getsampleset(channel,era,**kwargs):
         #( 'ST', "TbarBQ_t-channel",      "ST t-channel at",      75.47), # NLO
         ( 'ST', "TWminustoLNu2Q",             "ST tW semileptonic",         15.8 ), # NLO (36.0) times LNu2Q BR
         ( 'ST', "TWminusto2L2Nu",             "ST tW 2l2#nu",               3.8 ), # NLO (36.0) times 2L2Nu BR
-        # ( 'ST', "TbarWplustoLNu2Q",         "ST atW semileptonic",          15.9 ), # NLO (36.1) times LNu2Q BR
-        # ( 'ST', "TbarWplusto2L2Nu",         "ST atW 2l2#nu",                3.8 ), # NLO (36.1) times 2L2Nu BR
+        #( 'ST', "TbarWplustoLNu2Q",         "ST atW semileptonic",          15.9 ), # NLO (36.1) times LNu2Q BR
+        #( 'ST', "TbarWplusto2L2Nu",         "ST atW 2l2#nu",                3.8 ), # NLO (36.1) times 2L2Nu BR
       ]
 
     if '2022_preEE' in era:
@@ -207,17 +207,20 @@ def getsampleset(channel,era,**kwargs):
     weight = ""
   #elif channel in ['mutau','etau']:
   if 'mutau' in channel or 'etau' in channel:
-    weight = "genweight*trigweight*puweight*idisoweight_1*idweight_2*ltfweight_2"
+    # weight = "genweight*trigweight*puweight*idisoweight_1*idweight_2*ltfweight_2"
+    weight = "genweight*puweight" 
   elif channel in ['tautau','ditau']:
     weight = "genweight*trigweight*puweight*idweight_1*idweight_2*ltfweight_1*ltfweight_2"
   else: # mumu, emu, ...
-    weight = "genweight*trigweight*puweight*idisoweight_1*idisoweight_2"
+    # weight = "genweight*trigweight*puweight*idisoweight_1*idisoweight_2"
+    weight = "genweight*puweight"
   for sf in rmsfs: # remove (old) SFs, e.g. for SF measurement
     weight = weight.replace(sf,"").replace("**","*").strip('*')
   for sf in addsfs:  # add extra SFs, e.g. for SF measurement
     weight = joinweights(weight,sf)
   kwargs.setdefault('weight',weight) # common weight for MC
-  kwargs.setdefault('fname', fname)  # default filename pattern
+  kwargs.setdefault('fname', fname)  # default filename pattern 
+  print("FNAME", fname)
   print(expsamples)
   sampleset = _getsampleset(datasample,expsamples,channel=channel,era=era,**kwargs)
   LOG.verb("weight = %r"%(weight),verbosity,1)

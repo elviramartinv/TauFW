@@ -40,7 +40,7 @@ class ModuleMuTau(ModuleTauPair):
     
     # CORRECTIONS
     # if self.ismc:
-      # self.muSFs   = MuonSFs(era=self.era,verb=self.verbosity) # muon id/iso/trigger SFs
+    #   self.muSFs   = MuonSFs(era=self.era,verb=self.verbosity) # muon id/iso/trigger SFs
     
     # CUTFLOW
     self.out.cutflow.addcut('none',         "no cut"                     )
@@ -222,12 +222,18 @@ class ModuleMuTau(ModuleTauPair):
     self.out.idDeepTau2018v2p5VSmu_2[0]    = tau.idDeepTau2018v2p5VSmu
     self.out.idDeepTau2018v2p5VSjet_2[0]   = tau.idDeepTau2018v2p5VSjet
 
+    # self.out.rawUParTVSe_2[0]            = tau.rawUParTVSe
+    # self.out.rawUParTVSmu_2[0]           = tau.rawUParTVSmu
+    # self.out.rawUParTVSjet_2[0]          = tau.rawUParTVSjet
+
+    
+
     
     # GENERATOR
     if self.ismc:
       self.out.genmatch_1[0]     = muon.genPartFlav
       self.out.genmatch_2[0]     = tau.genPartFlav
-      pt, phi, eta, status       = matchgenvistau(event,tau)
+      pt, eta, phi, status       = matchgenvistau(event,tau)
       self.out.genvistaupt_2[0]  = pt
       self.out.genvistaueta_2[0] = eta
       self.out.genvistauphi_2[0] = phi

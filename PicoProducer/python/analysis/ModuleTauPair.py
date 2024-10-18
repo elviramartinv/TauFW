@@ -90,8 +90,8 @@ class ModuleTauPair(Module):
       #if self.isUL and self.tes==None:
       #  self.tes = 1.0 # placeholder
     self.jetvetoTool = None
-    # if '202' in self.era: # only mandatory for Run 3: 2022, 2023, ... (see https://cms-jerc.web.cern.ch/Recommendations/#jet-veto-maps)
-    #   self.jetvetoTool = JetVetoMapTool(era=self.era,verb=self.verbosity) 
+    if '202' in self.era: # only mandatory for Run 3: 2022, 2023, ... (see https://cms-jerc.web.cern.ch/Recommendations/#jet-veto-maps)
+      self.jetvetoTool = JetVetoMapTool(era=self.era,verb=self.verbosity) 
     self.deepjet_wp = BTagWPs('DeepJet',era=self.era)
     
   
