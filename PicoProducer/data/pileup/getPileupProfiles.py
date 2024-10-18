@@ -87,7 +87,7 @@ def getDataProfile(outfname,JSON,pileup,bins,era,minbias,local=False):
     pileup = copy2local(pileup)
     command = "./pileupCalc.py -i %s --inputLumiJSON %s --calcMode true --maxPileupBin %d --numPileupBins %d --minBiasXsec %d %s --verbose"%(JSON,pileup,bins,bins,minbias*1000,outfname)
   else:
-    command = "pileupCalc.py -i %s --inputLumiJSON %s --calcMode true --maxPileupBin %d --numPileupBins %d --minBiasXsec %d %s"%(JSON,pileup,bins,bins,minbias*1000,outfname)
+    command = "python3 pileupCalc.py -i %s --inputLumiJSON %s --calcMode true --maxPileupBin %d --numPileupBins %d --minBiasXsec %d %s"%(JSON,pileup,bins,bins,minbias*1000,outfname)
   print(">>>   executing command (this may take a while):")
   print(">>>   " + command)
   os.system(command)
@@ -565,7 +565,7 @@ def main(args):
       for period, json in jsons.items():
         for minbias in minbiases:
           filename = "Data_PileUp_%s_%s.root"%(period,str(minbias).replace('.','p'))
-          datahist = getDataProfile(filename,json,pileup,100,era,minbias)
+          datahist = getDataProfile(filename,json,pileup,1000,era,minbias)
           datahists[period].append((minbias,datahist))
     elif args.plot: # do not create new data profiles, but just load them
       for era in jsons:
