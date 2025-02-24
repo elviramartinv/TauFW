@@ -188,7 +188,7 @@ def getsampleset(channel,era,**kwargs):
   elif 'etau' in channel or 'ee' in channel: 
     if (year==2018 or year==2022):
       dataset = "EGamma_Run%d?"%year
-    elif '2023' in era or '2024': dataset = "EGamma*" 
+    elif '2023' in era or '2024' in era: dataset = "EGamma*" 
     else: "SingleElectron_Run%d?"%year
 
   elif 'emu'    in channel: dataset = "SingleMuon_Run%d?"%year
