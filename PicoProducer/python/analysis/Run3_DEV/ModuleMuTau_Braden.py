@@ -32,11 +32,12 @@ class ModuleMuTau(ModuleTauPair):
       self.muonCutPt  = lambda e: 25
       self.muonCutEta = lambda e: 2.4
     elif self.year==2022 or self.year==2023 or self.year==2024:
-      self.trigger    = lambda e: e.HLT_IsoMu24 or e.HLT_IsoMu27#e.HLT_IsoMu27 #or e.HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1
-      self.muonCutPt  = lambda e: 26
-      self.muonCutEta = lambda e: 2.4
+      self.trigger    = lambda e: e.HLT_IsoMu24 #e.HLT_IsoMu27 #or e.HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1
+      # self.trigger    = lambda e: e.HLT_IsoMu20_eta2p1_PNetTauhPFJet27_Loose_eta2p3_CrossL1
+      self.muonCutPt  = lambda e: 25
+      self.muonCutEta = lambda e: 2.1
     self.tauCutPt     = 20
-    self.tauCutEta    = 2.5 # 2.3 DeepTau2p1 and 2.5 for DeepTau2p5
+    self.tauCutEta    = 2.1 # 2.3 DeepTau2p1 and 2.5 for DeepTau2p5
     
     # CORRECTIONS
     # if self.ismc:
@@ -170,8 +171,8 @@ class ModuleMuTau(ModuleTauPair):
     if self.out.lepton_vetoes[0] and self.out.lepton_vetoes_notau[0]: return False
     self.out.cutflow.fill('lepvetoes')
 
-    # if self.jetveto(event): return False
-    # self.out.cutflow.fill('jetvetoes')
+    if self.jetveto(event): return False
+    self.out.cutflow.fill('jetvetoes')
    
  
     # EVENT
@@ -222,9 +223,9 @@ class ModuleMuTau(ModuleTauPair):
     self.out.idDeepTau2018v2p5VSmu_2[0]    = tau.idDeepTau2018v2p5VSmu
     self.out.idDeepTau2018v2p5VSjet_2[0]   = tau.idDeepTau2018v2p5VSjet
 
-    # self.out.rawUParTVSe_2[0]            = tau.rawUParTVSe
-    # self.out.rawUParTVSmu_2[0]           = tau.rawUParTVSmu
-    # self.out.rawUParTVSjet_2[0]          = tau.rawUParTVSjet
+    # self.out.rawUParTVSe_2[0]              = tau.rawUParTVSe
+    # self.out.rawUParTVSmu_2[0]             = tau.rawUParTVSmu
+    # self.out.rawUParTVSjet_2[0]            = tau.rawUParTVSjet
 
     
 

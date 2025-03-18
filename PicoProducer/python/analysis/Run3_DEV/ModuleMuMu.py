@@ -40,8 +40,11 @@ class ModuleMuMu(ModuleTauPair):
     self.tauCutEta    = 2.5 # 2.3 DeepTau2p1 and 2.5 for DeepTau2p5
     
     # CORRECTIONS
-    # if self.ismc:
-    #   self.muSFs   = MuonSFs(era=self.era)
+    if self.ismc:
+      if self.year==2024:
+        self.muSFs  = 1
+      else:
+        self.muSFs   = MuonSFs(era=self.era,verb=self.verbosity) # muon id/iso/trigger SFs
 
     # TRIGGERS
     y_trig = self.year
@@ -254,13 +257,15 @@ class ModuleMuMu(ModuleTauPair):
         self.btagTool.fillEffMaps(jets,usejec=self.dojec)
       
       # MUON WEIGHTS
-      # self.out.trigweight[0]    = self.muSFs.getTriggerSF(muon1.pt,muon1.eta) # assume leading muon was triggered on
-      # self.out.idisoweight_1[0] = self.muSFs.getIdIsoSF(muon1.pt,muon1.eta)
-      # self.out.idisoweight_2[0] = self.muSFs.getIdIsoSF(muon2.pt,muon2.eta)
-    
-      self.out.trigweight[0]    = 1.
-      self.out.idisoweight_1[0] = 1.
-      self.out.idisoweight_2[0] = 1.
+      if self.year==2024:
+        self.out.trigweight[0]    = 1.
+        self.out.idisoweight_1[0] = 1.
+        self.out.idisoweight_2[0] = 1.
+      else:
+        self.out.trigweight[0]    = self.muSFs.getTriggerSF(muon1.pt,muon1.eta) # assume leading muon was triggered on
+        self.out.idisoweight_1[0] = self.muSFs.getIdIsoSF(muon1.pt,muon1.eta)
+        self.out.idisoweight_2[0] = self.muSFs.getIdIsoSF(muon2.pt,muon2.eta)
+
     
     # MET & DILEPTON VARIABLES
     self.fillMETAndDiLeptonBranches(event,muon1,muon2,met,met_vars)
