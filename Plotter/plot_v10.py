@@ -9,7 +9,8 @@
 #>>>>Run with --serial option if using py3:
 #   ./plot_v10.py -y 2018 -c mutau --serial
 
-from config.samples_v12 import *
+# from config.samples_v12 import *
+from config.samples_Summer24 import *
 from TauFW.Plotter.plot.string import filtervars
 from TauFW.Plotter.plot.utils import LOG as PLOG
 from TauFW.Plotter.plot.Plot import Plot, deletehist
