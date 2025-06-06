@@ -72,7 +72,8 @@ def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era=""
       Var('m_vis',          11,  60, 120, fname="mvis_coarse",ctitle={'mumu':"m_mumu",'emu':"m_emu"},logy=False, cbins={"pt_\d>":(25,0,250),"nbtag\w*>":(30,0,300)},cpos={"pt_\d>[1678]0":'LL;y=0.88'}),
       Var("m_2",            30,  0,   3, title="m_tau",veto=["njet","nbtag","dm_2==0"]),
       Var("dm_2",           14,  0,  14, fname="dm_2",title="Reconstructed tau_h decay mode",veto="dm_2==",position="TMC",ymargin=1.2),
-
+      Var('rawDeepTau2018v2p5VSjet_2', 30, 0.94, 1, title="DeepTau2018v2p5 VSjet", logy=False, ctitle={'etau':"DeepTau2018v2p5 VSjet",'tautau':"DeepTau2018v2p5 VSjet"}),
+      Var('rawPNetVSjet_2', 30, 0.94, 1, title="PNet VSjet", logy=False, ctitle={'etau':"PNet VSjet",'tautau':"PNet VSjet"}),
     ]
   elif 'mumu' in channel or 'ee' in channel:
     variables += [
@@ -98,6 +99,11 @@ def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era=""
     #for stack, variable in stacks.iteritems():
     for stack, variable in stacks.items(): # python 3
       #position = "" #variable.position or 'topright'
+      max_yield = max(
+          [h.GetMaximum() for h in stack.hists if h] +
+          ([stack.datahist.GetMaximum()] if stack.datahist else [])
+      )
+      stack.ymax = 1.6 * max_yield
       stack.draw(fraction=fraction)
       stack.drawlegend() #position)
       stack.drawtext(text)
