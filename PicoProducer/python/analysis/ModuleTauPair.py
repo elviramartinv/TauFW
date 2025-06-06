@@ -156,7 +156,15 @@ class ModuleTauPair(Module):
       ('Tau_idDeepTau2018v2p5VSjet','Tau_idDeepTau2017v2p1VSjet'),
       ('Tau_rawDeepTau2018v2p5VSe','Tau_rawDeepTau2017v2p1VSe'), 
       ('Tau_rawDeepTau2018v2p5VSmu','Tau_rawDeepTau2017v2p1VSmu'),  
-      ('Tau_rawDeepTau2018v2p5VSjet','Tau_rawDeepTau2017v2p1VSjet')
+      ('Tau_rawDeepTau2018v2p5VSjet','Tau_rawDeepTau2017v2p1VSjet'),
+      ('Tau_rawPNetVSe','Tau_rawPNetVSe'),
+      ('Tau_rawPNetVSmu','Tau_rawPNetVSmu'),  
+      ('Tau_rawPNetVSjet','Tau_rawPNetVSjet'),
+      # ('Tau_rawUParTVSe','Tau_rawUParTVSe'),
+      # ('Tau_rawUParTVSmu','Tau_rawUParTVSmu'),
+      # ('Tau_rawUParTVSjet','Tau_rawUParTVSjet'),
+      # ('Tau_decayModePNet','Tau_decayModePNet'),
+      # ('Tau_decayModeUParT','Tau_decayModeUParT')
     ]
     # for v9
     branches = [
