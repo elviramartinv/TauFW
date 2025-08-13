@@ -72,7 +72,12 @@ class TreeProducerTauPair(TreeProducer):
         self.addBranch('trigweightUp',      'f', 1.)
         self.addBranch('trigweightDown',    'f', 1.)
       self.addBranch('puweight',            'f', 1., title="pileup up reweighting")
+      self.addBranch('puweightUp',         'f', 1., title="pileup up reweighting up")
+      self.addBranch('puweightDown',       'f', 1., title="pileup up reweighting down")
       self.addBranch('zptweight',           'f', 1., title="Z pT reweighting")
+      self.addBranch('zptweight_lo',        'f', 1., title="Z pT reweighting LO")
+      self.addBranch('zptweight_nlo',        'f', 1., title="Z pT reweighting NLO")
+      self.addBranch('zptweight_nnlo',        'f', 1., title="Z pT reweighting NNLO")
       self.addBranch('ttptweight',          'f', 1., title="top pT reweighting")
       self.addBranch('btagweight',          'f', 1., title="b tagging weight")
       #if module.dosys:
@@ -162,4 +167,3 @@ class TreeProducerTauPair(TreeProducer):
         self.addBranch('m_moth',          'f', -1, title="generator mother mass (Z boson, W boson, top quark, ...)")
         self.addBranch('pt_moth',         'f', -1, title="generator mother pT (Z boson, W boson, top quark, ...)")
     
-

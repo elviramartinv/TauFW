@@ -9,6 +9,7 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collect
 from TauFW.PicoProducer.corrections.PileupTool import *
 from TauFW.PicoProducer.corrections.JetVetoMapTool import *
 from TauFW.PicoProducer.corrections.RecoilCorrectionTool import *
+from TauFW.PicoProducer.corrections.DYandRecoilCorrlib import *
 #from TauFW.PicoProducer.corrections.PreFireTool import *
 from TauFW.PicoProducer.corrections.BTagTool import BTagWeightTool, BTagWPs
 from TauFW.common.tools.log import header
@@ -60,7 +61,7 @@ class ModuleTauPair(Module):
     self.bjetCutEta = 2.4 if self.year==2016 else 2.5
     self.isUL       = 'UL' in self.era
     
-    assert self.year in [2016,2017,2018,2022,2023,2024], "Did not recognize year %s! Please choose from 2016, 2017 and 2018."%self.year
+    assert self.year in [2016,2017,2018,2022,2023,2024,2025], "Did not recognize year %s! Please choose from 2016, 2017 and 2018."%self.year
     assert self.dtype in ['mc','data','embed'], "Did not recognize data type '%s'! Please choose from 'mc', 'data' and 'embed'."%self.dtype
     
     # YEAR-DEPENDENT IDs
@@ -74,9 +75,13 @@ class ModuleTauPair(Module):
     self.metUncLabels = [ ]
     if self.ismc:
       self.puTool      = PileupWeightTool(era=self.era,sample=self.filename,verb=self.verbosity)
+      self.puTool_up   = PileupWeightTool(era=self.era,sample=self.filename,sigma='up',verb=self.verbosity)
+      self.puTool_down = PileupWeightTool(era=self.era,sample=self.filename,sigma='down',verb=self.verbosity)
       self.btagTool    = BTagWeightTool('DeepJet','medium',era=self.era,channel=self.channel,maxeta=self.bjetCutEta) #,loadsys=not self.dotight
       if self.dozpt:
         self.zptTool  = ZptCorrectionTool(era=self.era)
+        if self.year in [2022,2023,2024,2025]: # Run 3
+          self.zptTool_json =DYandRecoilCorrlib(era=self.era)
       #if self.dorecoil:
       #  self.recoilTool   = RecoilCorrectionTool(year=self.year)
       #if self.year in [2016,2017]:
@@ -140,6 +145,7 @@ class ModuleTauPair(Module):
 
     # for v10
     branchesV10 = [
+      ('Jet_jetId',                     [6]*32        ),
       ('Muon_isTracker',                  [True]*32     ),
       #('Electron_mvaFall17V217Iso',      [1.]*32       ), #not available anymore
       ('Electron_lostHits',               [0]*32        ),
@@ -151,20 +157,41 @@ class ModuleTauPair(Module):
       ('Electron_mvaFall17V2noIso_WP90', 'Electron_mvaNoIso_WP90' ),
       ('Tau_idDecayMode',                [True]*32               ), 
       ('Tau_idDecayModeNewDMs',          [True]*32               ),
+
+      ('Tau_idDeepTau2017v2p1VSe', [-1.]*32),
+      ('Tau_idDeepTau2017v2p1VSmu', [-1.]*32),  
+      ('Tau_idDeepTau2017v2p1VSjet', [-1.]*32),
+
       ('Tau_idDeepTau2018v2p5VSe','Tau_idDeepTau2017v2p1VSe'), 
       ('Tau_idDeepTau2018v2p5VSmu','Tau_idDeepTau2017v2p1VSmu'),  
       ('Tau_idDeepTau2018v2p5VSjet','Tau_idDeepTau2017v2p1VSjet'),
       ('Tau_rawDeepTau2018v2p5VSe','Tau_rawDeepTau2017v2p1VSe'), 
       ('Tau_rawDeepTau2018v2p5VSmu','Tau_rawDeepTau2017v2p1VSmu'),  
       ('Tau_rawDeepTau2018v2p5VSjet','Tau_rawDeepTau2017v2p1VSjet'),
-      ('Tau_rawPNetVSe','Tau_rawPNetVSe'),
-      ('Tau_rawPNetVSmu','Tau_rawPNetVSmu'),  
-      ('Tau_rawPNetVSjet','Tau_rawPNetVSjet'),
-      # ('Tau_rawUParTVSe','Tau_rawUParTVSe'),
-      # ('Tau_rawUParTVSmu','Tau_rawUParTVSmu'),
-      # ('Tau_rawUParTVSjet','Tau_rawUParTVSjet'),
-      # ('Tau_decayModePNet','Tau_decayModePNet'),
-      # ('Tau_decayModeUParT','Tau_decayModeUParT')
+
+      ('Tau_rawPNetVSe',    [-1.]*32),
+      ('Tau_rawPNetVSmu',   [-1.]*32),
+      ('Tau_rawPNetVSjet',  [-1.]*32),
+      ('Tau_decayModePNet', [-1.]*32),
+      ('Tau_probDM0PNet',   [-1.]*32),
+      ('Tau_probDM1PNet',   [-1.]*32),
+      ('Tau_probDM2PNet',   [-1.]*32),
+      ('Tau_probDM10PNet',  [-1.]*32),
+      ('Tau_probDM11PNet',  [-1.]*32),
+      ('Tau_ptCorrPNet',    [-1.]*32),
+      ('Tau_qConfPNet',     [-1.]*32),
+      
+      ('Tau_rawUParTVSe',    [-1.]*32),
+      ('Tau_rawUParTVSmu',   [-1.]*32),
+      ('Tau_rawUParTVSjet',  [-1.]*32),
+      ('Tau_decayModeUParT', [-1.]*32),
+      ('Tau_probDM0UParT',   [-1.]*32),
+      ('Tau_probDM1UParT',   [-1.]*32),
+      ('Tau_probDM2UParT',   [-1.]*32),
+      ('Tau_probDM10UParT',  [-1.]*32),
+      ('Tau_probDM11UParT',  [-1.]*32),
+      ('Tau_ptCorrUParT',    [-1.]*32),
+      ('Tau_qConfUParT',     [-1.]*32)
     ]
     # for v9
     branches = [
@@ -321,7 +348,11 @@ class ModuleTauPair(Module):
       if abs(jet.eta)>4.7: continue
       if jet.DeltaR(tau1)<0.5: continue
       if jet.DeltaR(tau2)<0.5: continue
-      if jet.jetId<2: continue # Tight
+      try:
+        if jet.jetId<2: continue # Tight
+      except(IndexError,AttributeError):
+        # If jetId is not available or out of bounds, assume it passes (jetId=6 means tight)
+        pass
       
       # SAVE JEC VARIATIONS
       if self.dojec:
@@ -443,6 +474,10 @@ class ModuleTauPair(Module):
       self.out.m_moth[0]      = zboson.M()
       self.out.pt_moth[0]     = zboson.Pt()
       self.out.zptweight[0]   = self.zptTool.getZptWeight(zboson.Pt(),zboson.M())
+      if self.year in [2022,2023,2024,2025]: # Run 3
+        self.out.zptweight_lo[0] = self.zptTool_json.getDYpTCorr(self.era,zboson.Pt())
+        self.out.zptweight_nlo[0] = self.zptTool_json.getDYpTCorr(self.era,zboson.Pt(),order='NLO')
+        self.out.zptweight_nnlo[0] = self.zptTool_json.getDYpTCorr(self.era,zboson.Pt(),order='NNLO')
     
     elif self.dotoppt:
       toppt1, toppt2          = gettoppt(event)
@@ -452,6 +487,8 @@ class ModuleTauPair(Module):
     
     self.out.genweight[0]     = event.genWeight
     self.out.puweight[0]      = self.puTool.getWeight(event.Pileup_nTrueInt)
+    self.out.puweightUp[0]   = self.puTool_up.getWeight(event.Pileup_nTrueInt)    # up (72.3832 mb)
+    self.out.puweightDown[0] = self.puTool_down.getWeight(event.Pileup_nTrueInt)  # down (66.0168 mb)
     self.out.btagweight[0]    = self.btagTool.getWeight(jets)
     if self.dosys:
       if self.dopdf:
