@@ -10,11 +10,12 @@
 #   ./plot_v10.py -y 2018 -c mutau --serial
 
 # from config.samples_v12 import *
-from config.samples_Summer24 import *
+from config.samples_Summer24v15 import *
 from TauFW.Plotter.plot.string import filtervars
 from TauFW.Plotter.plot.utils import LOG as PLOG
 from TauFW.Plotter.plot.Plot import Plot, deletehist
 import yaml
+import time
 
 
 def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era="",
@@ -72,8 +73,41 @@ def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era=""
       Var('m_vis',          11,  60, 120, fname="mvis_coarse",ctitle={'mumu':"m_mumu",'emu':"m_emu"},logy=False, cbins={"pt_\d>":(25,0,250),"nbtag\w*>":(30,0,300)},cpos={"pt_\d>[1678]0":'LL;y=0.88'}),
       Var("m_2",            30,  0,   3, title="m_tau",veto=["njet","nbtag","dm_2==0"]),
       Var("dm_2",           14,  0,  14, fname="dm_2",title="Reconstructed tau_h decay mode",veto="dm_2==",position="TMC",ymargin=1.2),
-      Var('rawDeepTau2018v2p5VSjet_2', 30, 0.94, 1, title="DeepTau2018v2p5 VSjet", logy=False, ctitle={'etau':"DeepTau2018v2p5 VSjet",'tautau':"DeepTau2018v2p5 VSjet"}),
-      Var('rawPNetVSjet_2', 30, 0.94, 1, title="PNet VSjet", logy=False, ctitle={'etau':"PNet VSjet",'tautau':"PNet VSjet"}),
+
+      Var("decayModePNet_2", 14,0,14, title="Reconstructed tau_h PNet decay mode"),
+      Var("decayModeUParT_2", 14,0,14, title="Reconstruction tau_h UParT decay mode"),
+
+      # Var("rawPNetVSjet_2",  "Score_{PNetVSjet}",50, -0.05, 1.,ymin = 1e3,cbins={"rawPNetVS":(50, 0.75,1.05)},pos='ML', logy=True), #veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("rawPNetVSjet_2",  "Score_{PNetVSjet}",30, 0, 1.,ymin = 1e3, pos='ML', logy=True), #veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("rawPNetVSe_2",  "Score_{PNetVSe}",50, -0.05, 1.,ymin = 1e3, logy=True,cbins={"rawPNetVS":(50, 0.3,1.05)},pos='ML'), #veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("rawPNetVSmu_2",  "Score_{PNetVSmu}",50, -0.05, 1.,ymin = 1e3,cbins={"rawPNetVS":(30, 0.78,1.05)},pos='ML', logy=True), #veto=["rawUParTVS","DeepTau2018v2p5"]),
+
+      Var("rawDeepTau2018v2p5VSjet_2",  "Score_{DeepTau2018v2p5VSjet}",30, 0.94, 1.,ymin = 1e3,pos='ML', logy=True, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
+      Var("rawDeepTau2018v2p5VSe_2",  "Score_{DeepTau2018v2p5VSe}",30, -0.05, 1.,ymin = 1e3,cbins={"DeepTau2018":(50, 0.2,1.05)}, pos='ML',ncols=3 ,logy=True, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
+      Var("rawDeepTau2018v2p5VSmu_2",  "Score_{DeepTau2018v2p5VSmu}",30, -0.05, 1.,ymin = 1e3,cbins={"DeepTau2018":(50, 0.8,1.05)},pos='ML', logy=True, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
+
+      Var("rawUParTVSe_2",  "Score_{ UParTVSe}",50, -0.05, 1.,ymin = 1e3,cbins={"rawUParTVS":(75, 0.05,1.05)}, logy=True,fname="rawUParTVSe_2_log",pos="L",ncols=2,ymargin=1.3),
+      Var("rawUParTVSmu_2",  "Score_{UParTVSmu}",50, -0.05, 1.,ymin = 1e2,cbins={"rawUParTVS":(50, 0.75,1.05)},pos='ML', logy=True,fname="rawUParTVSmu_2_log",ncols=2,ymargin=1.3),
+      # Var("rawUParTVSjet_2",  "Score_{UParTVSjet}",50, -0.05, 1.,ymin = 1e3, cbins={"rawUParTVS":(75, 0.25,1.05)},logy=True,fname="rawUParTVSjet_2_log",pos="TR",ncols=2,ymargin=1.3),
+      Var("rawUParTVSjet_2",  "Score_{UParTVSjet}",30, 0, 1.,ymin = 1e3,logy=True,fname="rawUParTVSjet_2_log",pos="TR",ncols=2,ymargin=1.3),
+
+
+      Var("probDM0UParT_2", "Prob of DM_{UParT}=0", 21, 0, 1.05, fname="probDM0UParT_2",logy=True, pos="R",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      Var("probDM1UParT_2", "Prob of DM_{UParT}=1", 21, 0, 1.05, fname="probDM1UParT_2",logy=True, pos="R",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      Var("probDM2UParT_2", "Prob of DM_{UParT}=2", 21, 0, 1.05, fname="probDM2UParT_2",logy=True, pos="R",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      Var("probDM10UParT_2", "Prob of DM_{UParT}=10", 21, 0, 1.05, fname="probDM10UParT_2",logy=True, pos="R",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      Var("probDM11UParT_2", "Prob of DM_{UParT}=11", 21, 0, 1.05, fname="probDM11UParT_2",logy=True, pos="R",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      Var("decayModeUParT_2", "decayMode_UParT", 14,  0,  14, fname="decayModeUParT_2",title="Reconstructed tau_h UParT decay mode",position="TMC",veto=["rawPNetVS","DeepTau2018v2p5"],ymargin=1.7),
+
+      Var("probDM0PNet_2", "Prob of DM_{PNet}=0", 21, 0, 1.05, fname="probDM0PNet_2",logy=True, pos="R", veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("probDM1PNet_2", "Prob of DM_{PNet}=1", 21, 0, 1.05, fname="probDM1PNet_2",logy=True, pos="R", veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("probDM2PNet_2", "Prob of DM_{PNet}=2", 21, 0, 1.05, fname="probDM2PNet_2",logy=True, pos="R", veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("probDM10PNet_2", "Prob of DM_{PNet}=10", 21, 0, 1.05, fname="probDM10PNet_2",logy=True, pos="R", veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("probDM11PNet_2", "Prob of DM_{PNet}=11", 21, 0, 1.05, fname="probDM11PNet_2",logy=True, pos="R", veto=["rawUParTVS","DeepTau2018v2p5"]),
+
+      Var("ptCorrUParT_2",  "pt CorrUParT tau",40, 0, 120, fname="ptCorrUParT_2",title="pt CorrUParT tau", pos="L",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      Var("qConfUParT_2",  "q CorrUParT tau",4, -2, 2, fname="qConfUParT_2",title="q CorrUParT tau", pos="L",veto=["rawPNetVS","DeepTau2018v2p5"]),
+      
     ]
   elif 'mumu' in channel or 'ee' in channel:
     variables += [
@@ -103,7 +137,7 @@ def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era=""
           [h.GetMaximum() for h in stack.hists if h] +
           ([stack.datahist.GetMaximum()] if stack.datahist else [])
       )
-      stack.ymax = 1.6 * max_yield
+      stack.ymax = 1.8 * max_yield
       stack.draw(fraction=fraction)
       stack.drawlegend() #position)
       stack.drawtext(text)
@@ -272,7 +306,8 @@ def main(args):
 
 if __name__ == "__main__":
   from argparse import ArgumentParser, RawTextHelpFormatter
-  eras = ['2016','2017','2018','UL2016_preVFP','UL2016_postVFP','UL2017','UL2018','2022_preEE','2022_postEE', '2023C', '2023D', '2024']
+  start = time.time()
+  eras = ['2016','2017','2018','UL2016_preVFP','UL2016_postVFP','UL2017','UL2018','2022_preEE','2022_postEE', '2023C', '2023D', '2024', '2025']
   description = """Simple plotting script for pico analysis tuples"""
   parser = ArgumentParser(prog="plot",description=description,epilog="Good luck!")
   parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=eras, default=['2017'],
@@ -300,5 +335,17 @@ if __name__ == "__main__":
   LOG.verbosity = args.verbosity
   PLOG.verbosity = args.verbosity
   main(args)
+  end = time.time()
+  runtime = end - start
+
+  if runtime < 60:
+      print(f'Runtime: {runtime:.2f} seconds')
+  elif runtime < 3600:  # Less than one hour
+      minutes = runtime / 60
+      print(f'Runtime: {minutes:.2f} minutes')
+  else:
+      hours = runtime / 3600
+      print(f'Runtime: {hours:.2f} hours')
+
   print("\n>>> Done.")
   
