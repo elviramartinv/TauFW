@@ -14,6 +14,7 @@ channel: mutau
 tag: ""
 
 baselineCuts: "q_1*q_2<0 && iso_1<0.15 && idDecayModeNewDMs_2 && !lepton_vetoes_notau && metfilter && idDeepTau2018v2p5VSjet_2>=5 && idDeepTau2018v2p5VSe_2>=2 && idDeepTau2018v2p5VSmu_2>=4" 
+# baselineCuts: "q_1*q_2<0 && iso_1<0.15 && idDecayModeNewDMs_2 && !lepton_vetoes_notau && metfilter && idDeepTau2018v2p5VSe_2>=2 && idDeepTau2018v2p5VSmu_2>=4" 
 # These regions will be defined when creating inputs or making plots
 # At this point, they do not need to be exclusive; 
 # PLEASE NOTE:
@@ -36,6 +37,15 @@ regions:
     DM11: 
         definition: "mt_1<65 && dm_2==11"
         title: "h^{#pm}h^{#mp}h^{#pm}#pi^{0}"
+    barrel_region:
+        definition: "abs(eta_2)<1.5"
+        title: "barrel region |#eta(#tau)|<1.5"
+    positive_endcap_region:
+        definition: "eta_2>1.5"
+        title: "endcap region #eta(#tau)>1.5"
+    negative_endcap_region:
+        definition: "eta_2<-1.5"
+        title: "endcap region #eta(#tau)<-1.5"
     #zttregion:
     #    definition: "mt_1<60 && dzeta>-25 && abs(deta_ll)<1.5"
     #    title: "mt<60 GeV, dzeta>-25 GeV, |deta|<1.5:"

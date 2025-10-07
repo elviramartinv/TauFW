@@ -66,30 +66,32 @@ def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era=""
   ]
   if 'tau' in channel: # mutau, etau, tautau
     loadmacro("python/macros/mapDecayModes.C") # for mapRecoDM
-    dmlabels  = ["h^{#pm}","h^{#pm}h^{0}","h^{#pm}h^{#mp}h^{#pm}","h^{#pm}h^{#mp}h^{#pm}h^{0}","Other"]
+    dmlabels_hps  = ["h^{#pm}","h^{#pm}#pi^{0}","h^{#pm}h^{#pm}(#pi^{0}s)","h^{#pm}h^{#mp}h^{#pm}","h^{#pm}h^{#mp}h^{#pm}#pi^{0}"]  # For HPS: bin 2 = rare 2-prong modes
+    dmlabels_pnet = ["h^{#pm}","h^{#pm}#pi^{0}","h^{#pm}2#pi^{0}","h^{#pm}h^{#mp}h^{#pm}","h^{#pm}h^{#mp}h^{#pm}#pi^{0}"]  # For PNet: bin 2 = multi-pi0 modes (mainly DM2)
     variables += [
       Var('m_vis',          40,  0, 200, fname="mvis",ctitle={'mumu':"m_mumu",'emu':"m_emu"},logy=False, cbins={"pt_\d>":(50,0,250),"nbtag\w*>":(60,0,300)},cpos={"pt_\d>[1678]0":'LL;y=0.88'}),
       Var('m_vis',  1, 60,  120, fname="$VAR_1bin", veto=["m_vis>200"] ),
       Var('m_vis',          11,  60, 120, fname="mvis_coarse",ctitle={'mumu':"m_mumu",'emu':"m_emu"},logy=False, cbins={"pt_\d>":(25,0,250),"nbtag\w*>":(30,0,300)},cpos={"pt_\d>[1678]0":'LL;y=0.88'}),
-      Var("m_2",            30,  0,   3, title="m_tau",veto=["njet","nbtag","dm_2==0"]),
-      Var("dm_2",           14,  0,  14, fname="dm_2",title="Reconstructed tau_h decay mode",veto="dm_2==",position="TMC",ymargin=1.2),
-
-      Var("decayModePNet_2", 14,0,14, title="Reconstructed tau_h PNet decay mode"),
-      Var("decayModeUParT_2", 14,0,14, title="Reconstruction tau_h UParT decay mode"),
-
+      Var("m_2",            30,  0,   3, title="m_tau",position="RT",ymargin=1.2,ncols=2,colsep=-0.1, veto=["njet","nbtag","dm_2==0"]),
+      Var("dm_2",           14,  0,  14, fname="dm_2",title="Assigned tau_h DeepTau decay mode",veto="dm_2==",position="TL",ymargin=1.2),
+      Var("mapRecoDM(dm_2)", 5,  0,  5,  fname="dm_2_label", title="Assigned tau_h HPS decay mode", labels=dmlabels_hps, veto="dm_2==",position="TL",ymargin=3.2,ncols=2,logy=False),
+      Var("decayModePNet_2", 14,0,14, title="Assigned tau_h PNet decay mode"),
+      Var("mapRecoDM(decayModePNet_2)", 5,0,5, fname="decayModePNet_2_label", title="Assigned tau_h PNet decay mode", labels=dmlabels_pnet, veto="decayModePNet_2==",position="TL",ymargin=3.2,ncols=2,logy=False),
+      Var("decayModeUParT_2", 14,0,14, title="Assigned tau_h UParT decay mode"),
+     
       # # Var("rawPNetVSjet_2",  "Score_{PNetVSjet}",50, -0.05, 1.,ymin = 1e3,cbins={"rawPNetVS":(50, 0.75,1.05)},pos='ML', logy=True), #veto=["rawUParTVS","DeepTau2018v2p5"]),
-      Var("rawPNetVSjet_2",  "Score_{PNetVSjet}",30, 0, 1.,ymin = 1e3, pos='ML', logy=False), #veto=["rawUParTVS","DeepTau2018v2p5"]),
+      Var("rawPNetVSjet_2",  "Score_{PNetVSjet}",30, 0.4, 1.,ymin = 1e3, pos='ML', logy=False), #veto=["rawUParTVS","DeepTau2018v2p5"]),
       # Var("rawPNetVSe_2",  "Score_{PNetVSe}",50, -0.05, 1.,ymin = 1e3, logy=True,cbins={"rawPNetVS":(50, 0.3,1.05)},pos='ML'), #veto=["rawUParTVS","DeepTau2018v2p5"]),
       # Var("rawPNetVSmu_2",  "Score_{PNetVSmu}",50, -0.05, 1.,ymin = 1e3,cbins={"rawPNetVS":(30, 0.78,1.05)},pos='ML', logy=True), #veto=["rawUParTVS","DeepTau2018v2p5"]),
 
-      Var("rawDeepTau2018v2p5VSjet_2",  "Score_{DeepTau2018v2p5VSjet}",30, 0.96, 1.,ymin = 1e3,pos='ML', logy=False, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
+      Var("rawDeepTau2018v2p5VSjet_2",  "Score_{DeepTauVSjet}",30, 0.8, 1.,ymin = 1e3,pos='ML', logy=False, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
       Var("rawDeepTau2018v2p5VSe_2",  "Score_{DeepTau2018v2p5VSe}",30, -0.05, 1.,ymin = 1e3,cbins={"DeepTau2018":(50, 0.2,1.05)}, pos='ML',ncols=3 ,logy=False, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
       Var("rawDeepTau2018v2p5VSmu_2",  "Score_{DeepTau2018v2p5VSmu}",30, -0.05, 1.,ymin = 1e3,cbins={"DeepTau2018":(50, 0.8,1.05)},pos='ML', logy=False, veto=["rawUParTVS","rawPNetVS"],ymargin=1.3),
 
       # Var("rawUParTVSe_2",  "Score_{ UParTVSe}",50, -0.05, 1.,ymin = 1e3,cbins={"rawUParTVS":(75, 0.05,1.05)}, logy=True,fname="rawUParTVSe_2_log",pos="L",ncols=2,ymargin=1.3),
       # Var("rawUParTVSmu_2",  "Score_{UParTVSmu}",50, -0.05, 1.,ymin = 1e2,cbins={"rawUParTVS":(50, 0.75,1.05)},pos='ML', logy=True,fname="rawUParTVSmu_2_log",ncols=2,ymargin=1.3),
       # # Var("rawUParTVSjet_2",  "Score_{UParTVSjet}",50, -0.05, 1.,ymin = 1e3, cbins={"rawUParTVS":(75, 0.25,1.05)},logy=True,fname="rawUParTVSjet_2_log",pos="TR",ncols=2,ymargin=1.3),
-      Var("rawUParTVSjet_2",  "Score_{UParTVSjet}",30, 0, 1.,ymin = 1e3,logy=False,fname="rawUParTVSjet_2_log",pos="TR",ncols=2,ymargin=1.3),
+      Var("rawUParTVSjet_2",  "Score_{UParTVSjet}",30, 0.05, 1.,ymin = 1e3, logy=False,fname="rawUParTVSjet_2",pos="TR",ncols=2,ymargin=1.3),
 
       
     ]
@@ -118,13 +120,14 @@ def plot(sampleset,setup,parallel=True,tag="",extratext="",outdir="plots",era=""
     #for stack, variable in stacks.iteritems():
     for stack, variable in stacks.items(): # python 3
       #position = "" #variable.position or 'topright'
-      max_yield = max(
-          [h.GetMaximum() for h in stack.hists if h] +
-          ([stack.datahist.GetMaximum()] if stack.datahist else [])
-      )
-      stack.ymax = 1.8 * max_yield
+      # max_yield = max(
+      #     [h.GetMaximum() for h in stack.hists if h] +
+      #     ([stack.datahist.GetMaximum()] if stack.datahist else [])
+      # )
+      # stack.ymax = 1.6 * max_yield
       stack.draw(fraction=fraction)
-      stack.drawlegend() #position)
+      # stack.drawlegend(position='top')
+      stack.drawlegend() #position='top')
       stack.drawtext(text)
       stack.saveas(fname,ext=exts,tag=tag)
       stack.close()
