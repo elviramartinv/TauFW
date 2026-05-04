@@ -141,7 +141,7 @@ if __name__ == '__main__':
     parser.add_argument('-m', '--maxPileupBin', dest='maxPileupBin', action='store',
                            type=int, default=100, help='maximum value of pileup histogram (default: %(default)d)')
     parser.add_argument('-n', '--numPileupBins', dest='numPileupBins', action='store',
-                           type=int, default=1000, help='number of bins in pileup histogram (default: %(default)d)')
+                           type=int, default=100, help='number of bins in pileup histogram (default: %(default)d)')
     parser.add_argument('--pileupHistName', dest='pileupHistName', action='store',
                            default='pileup', help='name of pileup histogram (default: %(default)s)')
     parser.add_argument('-v', '--verbose', dest='verbose', action='store_true',
